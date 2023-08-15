@@ -4,6 +4,8 @@
 -- Set highlight on search
 vim.o.hlsearch = false
 
+vim.o.incsearch = true
+
 -- Make line numbers default
 vim.wo.number = true
 
@@ -38,6 +40,24 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
--- Set tabstop and shiftwidth to 4 spaces
+-- Tab config
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.expandtab = 4
+
+vim.opt.smartindent = true
+
+-- Scroll settings
+vim.opt.scrolloff = 8
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
