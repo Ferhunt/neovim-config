@@ -1,3 +1,5 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -50,6 +52,8 @@ vim.opt.smartindent = true
 
 -- Scroll settings
 vim.opt.scrolloff = 8
+
+vim.opt.colorcolumn = '80,100'
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
