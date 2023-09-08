@@ -7,6 +7,14 @@ vim.keymap.set('n', '<leader>ee', vim.cmd.Ex)
 -- To be able to save with Ctrl-s
 vim.keymap.set({'n', 'i'}, '<C-s>', vim.cmd.w)
 
+-- Indent in visual mode without changing back
+vim.keymap.set('v', '<', '<gv')
+vim.keymap.set('v', '>', '>gv')
+
+-- With Tab
+vim.keymap.set('v', '<S-Tab>', '<gv')
+vim.keymap.set('v', '<Tab>', '>gv')
+
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 vim.keymap.set("v", "<M-Down>", ":m '>+1<cr>gv=gv")
