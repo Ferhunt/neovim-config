@@ -19,6 +19,15 @@ vim.keymap.set('v', '<Tab>', '>gv')
 vim.keymap.set('n', 'J', 'gT')
 vim.keymap.set('n', 'K', 'gt')
 
+-- Move current tab
+vim.keymap.set('n', 'H', function ()
+  vim.cmd('tabm -1')
+end)
+
+vim.keymap.set('n', 'L', function ()
+  vim.cmd('tabm +1')
+end)
+
 -- Open new tab with leader t
 vim.keymap.set('n', '<leader>t', function ()
   vim.cmd(':tab split')
