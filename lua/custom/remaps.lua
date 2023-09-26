@@ -2,7 +2,7 @@
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set('n', '<leader>ee', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>e', vim.cmd.Ex, {desc = '[E]xplorer'})
 
 -- To be able to save with Ctrl-s
 vim.keymap.set({'n', 'i'}, '<C-s>', vim.cmd.w)
@@ -15,7 +15,17 @@ vim.keymap.set('v', '>', '>gv')
 vim.keymap.set('v', '<S-Tab>', '<gv')
 vim.keymap.set('v', '<Tab>', '>gv')
 
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+-- Switch tabs
+vim.keymap.set('n', 'J', 'gT')
+vim.keymap.set('n', 'K', 'gt')
+
+-- Open new tab with leader t
+vim.keymap.set('n', '<leader>t', function ()
+  vim.cmd(':tab split')
+  vim.cmd.edit('.')
+end)
+
+--vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 vim.keymap.set("v", "<M-Down>", ":m '>+1<cr>gv=gv")
 vim.keymap.set("v", "<M-Up>", ":m '<-2<CR>gv=gv")
@@ -36,19 +46,25 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>fd', vim.diagnostic.open_float, { desc = 'Open [F]loating [D]iagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 
 -- [[ Telescope ]]
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Telescope [F]ind [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
--- [[ Hex ]]
-vim.keymap.set("n", "<leader>EE", function ()
+-- Open current working directory with E
+vim.keymap.set("n", "<leader>E", function ()
   vim.cmd.edit('.')
+end, {desc = 'Open working directory on netrw'})
+
+-- Change current working directory to the directory of the current file, or the
+-- one open with netrw file explorer
+vim.keymap.set("n", "<leader>cd", function ()
+  vim.cmd.cd('%:h')
 end)
