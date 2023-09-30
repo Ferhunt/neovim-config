@@ -29,10 +29,16 @@ vim.keymap.set('n', 'L', function ()
 end)
 
 -- Open new tab with leader t
-vim.keymap.set('n', '<leader>t', function ()
+vim.keymap.set('n', '<leader>tn', function ()
   vim.cmd(':tab split')
   vim.cmd.edit('.')
-end)
+end, {desc = 'New [T]ab in [N]etrw'})
+
+vim.keymap.set('n', '<leader>tf', function ()
+  vim.cmd(':tab split')
+  vim.cmd.edit('.')
+  require('telescope.builtin').find_files()
+end, {desc = 'New [T]ab in Telescope [F]ind files'})
 
 --vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
@@ -77,3 +83,8 @@ end, {desc = 'Open working directory on netrw'})
 vim.keymap.set("n", "<leader>cd", function ()
   vim.cmd.cd('%:h')
 end)
+
+-- Terminal mode remaps
+
+-- Enter normal mode
+vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')

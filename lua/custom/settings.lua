@@ -55,6 +55,9 @@ vim.opt.scrolloff = 8
 
 vim.opt.colorcolumn = '80,100'
 
+-- configure terminal title
+vim.opt.titlestring = [[%f %h%m%r%w %{v:progname} (%{tabpagenr()} of %{tabpagenr('$')})]]
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
