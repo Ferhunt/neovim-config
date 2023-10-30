@@ -164,7 +164,7 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 
 -- Open current working directory with E
 vim.keymap.set("n", "<leader>E", function()
-  vim.cmd.edit('.')
+  vim.cmd.Ex('.')
 end, { desc = 'Open working directory on netrw' })
 
 -- Change current working directory to the directory of the current file, or the
