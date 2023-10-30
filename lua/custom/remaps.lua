@@ -16,17 +16,77 @@ vim.keymap.set('v', '<S-Tab>', '<gv')
 vim.keymap.set('v', '<Tab>', '>gv')
 
 -- Switch tabs
-vim.keymap.set('n', 'J', 'gT')
-vim.keymap.set('n', 'K', 'gt')
+-- vim.keymap.set('n', 'J', 'gT')
+-- vim.keymap.set('n', 'K', 'gt')
 
--- Move current tab with JK (mayus)
+-- [[Bufferline Remaps]]
+local bufferline = require('bufferline')
+-- Switch buffers in the Bufferline
+vim.keymap.set('n', 'J', function()
+  vim.cmd('BufferLineCyclePrev')
+end)
+vim.keymap.set('n', 'K', function()
+  vim.cmd('BufferLineCycleNext')
+end)
+
+-- Move buffers in the bufferline
 vim.keymap.set('n', 'H', function()
-  vim.cmd('tabm -1')
+  vim.cmd('BufferLineMovePrev')
+end)
+vim.keymap.set('n', 'L', function()
+  vim.cmd('BufferLineMoveNext')
 end)
 
-vim.keymap.set('n', 'L', function()
-  vim.cmd('tabm +1')
-end)
+-- Move to certain buffer in the bufferline
+vim.keymap.set('n', '<leader>1', function()
+  bufferline.go_to(1, true)
+end, { desc = 'Go to buffer 1 in BufferLine' })
+
+vim.keymap.set('n', '<leader>2', function()
+  bufferline.go_to(2, true)
+end, { desc = 'Go to buffer 2 in BufferLine' })
+
+vim.keymap.set('n', '<leader>3', function()
+  bufferline.go_to(3, true)
+end, { desc = 'Go to buffer 3 in BufferLine' })
+
+vim.keymap.set('n', '<leader>4', function()
+  bufferline.go_to(4, true)
+end, { desc = 'Go to buffer 4 in BufferLine' })
+
+vim.keymap.set('n', '<leader>5', function()
+  bufferline.go_to(5, true)
+end, { desc = 'Go to buffer 5 in BufferLine' })
+
+vim.keymap.set('n', '<leader>6', function()
+  bufferline.go_to(6, true)
+end, { desc = 'Go to buffer 6 in BufferLine' })
+
+vim.keymap.set('n', '<leader>7', function()
+  bufferline.go_to(7, true)
+end, { desc = 'Go to buffer 7 in BufferLine' })
+
+vim.keymap.set('n', '<leader>8', function()
+  bufferline.go_to(8, true)
+end, { desc = 'Go to buffer 8 in BufferLine' })
+
+vim.keymap.set('n', '<leader>9', function()
+  bufferline.go_to(9, true)
+end, { desc = 'Go to buffer 9 in BufferLine' })
+
+-- vim.keymap.set('n', 'H', function()
+--   vim.cmd('tabm -1')
+-- end)
+--
+-- vim.keymap.set('n', 'L', function()
+--   vim.cmd('tabm +1')
+-- end)
+
+-- Move to previous bufffer
+vim.keymap.set('n', '<leader><tab>', '<C-^>')
+
+-- Close current buffer
+vim.keymap.set('n', '<leader>bd', ':bd<cr>')
 
 -- Open new tab with leader t
 -- In netrw

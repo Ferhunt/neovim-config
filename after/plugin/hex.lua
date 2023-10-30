@@ -11,11 +11,14 @@ require 'hex'.setup {
   is_buf_binary_pre_read = function()
     -- logic that determines if a buffer contains binary data or not
     -- must return a bool
+    if vim.bo.bin then return true else return false end
   end,
 
   -- function that runs on BufReadPost to determine if it's binary or not
   is_buf_binary_post_read = function()
     -- logic that determines if a buffer contains binary data or not
     -- must return a bool
+    if vim.bo.bin then return true else return false end
   end,
 }
+
