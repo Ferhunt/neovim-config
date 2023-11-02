@@ -1,7 +1,9 @@
-require('onedark').setup({
-  code_style = {
-    comments = 'none'
-  }
+local vscode = require('vscode')
+vscode.setup({
+  style = 'dark',
+
+  -- Enable italic comment
+  italic_comments = false,
 })
-require('onedark').load()
+vscode.load()
 

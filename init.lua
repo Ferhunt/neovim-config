@@ -158,14 +158,7 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
   },
 
   -- Theme
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
+  'Mofiqul/vscode.nvim',
 
   -- Set lualine as statusline
   {
