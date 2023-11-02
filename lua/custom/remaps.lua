@@ -178,3 +178,26 @@ end)
 -- Enter normal mode
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
+-- Remaps for netrw
+vim.api.nvim_create_autocmd('filetype', {
+  pattern = 'netrw',
+  desc = 'Better mappings for netrw',
+  callback = function()
+    local bind = function(lhs, rhs)
+      vim.keymap.set('n', lhs, rhs, { remap = true, buffer = true })
+    end
+
+    -- edit new file
+    bind('n', '%')
+
+    -- rename file
+    bind('r', 'R')
+
+    -- Open file
+    bind('f', '<cr>')
+
+    -- Go up a directory
+    bind('e', '-')
+  end
+})
+
