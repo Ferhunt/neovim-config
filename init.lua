@@ -456,5 +456,22 @@ if next(vim.fn.argv()) == nil then
   vim.cmd.Ex()
 end
 
+require('lspconfig').gdscript.setup({
+
+  force_setup = true,                    -- because the LSP is global. Read more on lsp-zero docs about this.
+  single_file_support = false,
+  cmd = { 'ncat', '127.0.0.1', '6005' }, -- the important trick for Windows!
+  root_dir = require('lspconfig.util').root_pattern('project.godot', '.git'),
+  filetypes = { 'gd', 'gdscript', 'gdscript3' }
+})
+
+-- vim.lsp.configure('gdscript', {
+--   force_setup = true,                    -- because the LSP is global. Read more on lsp-zero docs about this.
+--   single_file_support = false,
+--   cmd = { 'ncat', '127.0.0.1', '6005' }, -- the important trick for Windows!
+--   root_dir = require('lspconfig.util').root_pattern('project.godot', '.git'),
+--   filetypes = { 'gd', 'gdscript', 'gdscript3' }
+-- })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
