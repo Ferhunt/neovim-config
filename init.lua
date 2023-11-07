@@ -100,6 +100,9 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
     dependencies = 'nvim-tree/nvim-web-devicons'
   },
 
+  -- Plugin to add inlay hints
+  'simrat39/inlay-hints.nvim',
+
   -- LSP Configuration & Plugins
   {
     'neovim/nvim-lspconfig',
@@ -293,12 +296,14 @@ require('nvim-treesitter.configs').setup {
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
 vim.lsp.set_log_level("WARN")
-local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
+local on_attach = function(client, bufnr)
+  local methods = vim.lsp.protocol.Methods
+
+  -- https://reddit.com/r/neovim/s/eDfG5BfuxW
+  if client.supports_method(methods.textDocument_inlayHint) then
+    vim.keymap.set('n', "<leader>th", function() vim.lsp.inlay_hint(bufnr, nil) end, { desc = "[t]oggle inlay [h]ints" })
+  end
+  -- We create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
   local nmap = function(keys, func, desc)
     if desc then
@@ -346,11 +351,25 @@ end
 --  define the property 'filetypes' to the map in question.
 local servers = {
   -- clangd = {},
-  gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+  gopls = {
+    settings = {
+      gopls = {
+        hints = {
+          assignVariables = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+        }
+      }
+    }
+  },
 
   lua_ls = {
     Lua = {

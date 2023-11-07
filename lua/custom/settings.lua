@@ -53,7 +53,7 @@ vim.opt.smartindent = true
 -- Scroll settings
 vim.opt.scrolloff = 8
 
-vim.opt.colorcolumn = '80,100'
+vim.opt.colorcolumn = '80'
 
 -- configure terminal title
 vim.opt.titlestring = [[%f %h%m%r%w %{v:progname} (%{tabpagenr()} of %{tabpagenr('$')})]]
@@ -75,3 +75,4 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.g.markdown_folding = 1 -- enable markdown folding
+

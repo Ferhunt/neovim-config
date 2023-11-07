@@ -201,3 +201,30 @@ vim.api.nvim_create_autocmd('filetype', {
   end
 })
 
+-- To indent automatically on empty line when entering insert
+vim.keymap.set("n", "i", function()
+  if #vim.fn.getline(".") == 0 then
+    return [["_cc]]
+  else
+    return "i"
+  end
+end, { expr = true, desc = "properly indent on empty line when insert" })
+
+-- To use ctrl + space to open completion menu
+local cmp = require('cmp')
+vim.keymap.set('i', '<C-space>', function()
+  if cmp.visible() then
+    require("notify")("visible")
+    cmp.abort()
+  else
+    require("notify")("not visible")
+    cmp.complete()
+  end
+end, { desc = '[S]earch [D]iagnostics' })
+
+-- Change window with <leader>w + hjkl
+vim.keymap.set('n', '<leader>wh', '<C-w>h')
+vim.keymap.set('n', '<leader>wj', '<C-w>j')
+vim.keymap.set('n', '<leader>wk', '<C-w>k')
+vim.keymap.set('n', '<leader>wl', '<C-w>l')
+
