@@ -228,3 +228,10 @@ vim.keymap.set('n', '<leader>wj', '<C-w>j')
 vim.keymap.set('n', '<leader>wk', '<C-w>k')
 vim.keymap.set('n', '<leader>wl', '<C-w>l')
 
+-- Scroll keymaps
+vim.keymap.set('n', '<C-j>', '<C-d>')
+vim.keymap.set('n', '<C-k>', '<C-u>')
+
+vim.keymap.set('n', '<M-j>', '<C-e>')
+vim.keymap.set('n', '<M-k>', '<C-y>')
+
