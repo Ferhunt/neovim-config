@@ -235,3 +235,9 @@ vim.keymap.set('n', '<C-k>', '<C-u>')
 vim.keymap.set('n', '<M-j>', '<C-e>')
 vim.keymap.set('n', '<M-k>', '<C-y>')
 
+-- On insert, alt + hjkl are mapped to the arrow keys
+vim.keymap.set('i', '<M-h>', '<left>')
+vim.keymap.set('i', '<M-j>', '<down>')
+vim.keymap.set('i', '<M-k>', '<up>')
+vim.keymap.set('i', '<M-l>', '<right>')
+
