@@ -64,7 +64,7 @@ vim.opt.rtp:prepend(lazypath)
 --
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
-require('lazy').setup({ -- NOTE: First, some plugins that don't require any configuration
+require('lazy').setup { -- NOTE: First, some plugins that don't require any configuration
 
   -- Git related plugins
   'tpope/vim-fugitive',
@@ -78,8 +78,8 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
 
   {
     'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    opts = {} -- this is equalent to setup({}) function
+    event = 'InsertEnter',
+    opts = {}, -- this is equalent to setup({}) function
   },
 
   -- Plugin for handling surrounding text
@@ -96,12 +96,23 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
   -- Plugin to add a bufferline
   {
     'akinsho/bufferline.nvim',
-    version = "*",
-    dependencies = 'nvim-tree/nvim-web-devicons'
+    version = '*',
+    dependencies = 'nvim-tree/nvim-web-devicons',
   },
 
   -- Plugin to add inlay hints
   'simrat39/inlay-hints.nvim',
+
+  -- Symbol tree
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-tree/nvim-web-devicons',
+    },
+  },
 
   -- LSP Configuration & Plugins
   {
@@ -113,7 +124,7 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
 
       -- Useful status updates for LSP
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim',       tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
@@ -137,7 +148,7 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
+  { 'folke/which-key.nvim', opts = {} },
 
   -- Adds git related signs to the gutter, as well as utilities for managing changes
   {
@@ -152,8 +163,7 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
         changedelete = { text = '~' },
       },
       on_attach = function(bufnr)
-        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk,
-          { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
+        vim.keymap.set('n', '<leader>gp', require('gitsigns').prev_hunk, { buffer = bufnr, desc = '[G]o to [P]revious Hunk' })
         vim.keymap.set('n', '<leader>gn', require('gitsigns').next_hunk, { buffer = bufnr, desc = '[G]o to [N]ext Hunk' })
         vim.keymap.set('n', '<leader>ph', require('gitsigns').preview_hunk, { buffer = bufnr, desc = '[P]review [H]unk' })
       end,
@@ -220,18 +230,17 @@ require('lazy').setup({ -- NOTE: First, some plugins that don't require any conf
     },
     build = ':TSUpdate',
   },
+}
 
-}, {})
+require 'custom.remaps'
 
-require('custom.remaps')
-
-require('custom.settings')
+require 'custom.settings'
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim' },
+  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'gdscript' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -284,10 +293,10 @@ require('nvim-treesitter.configs').setup {
     swap = {
       enable = true,
       swap_next = {
-        ['<leader>a'] = '@parameter.inner',
+        ['<leader>si'] = '@parameter.inner',
       },
       swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
+        ['<leader>sI'] = '@parameter.inner',
       },
     },
   },
@@ -295,13 +304,15 @@ require('nvim-treesitter.configs').setup {
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-vim.lsp.set_log_level("WARN")
+vim.lsp.set_log_level 'WARN'
 local on_attach = function(client, bufnr)
   local methods = vim.lsp.protocol.Methods
 
   -- https://reddit.com/r/neovim/s/eDfG5BfuxW
   if client.supports_method(methods.textDocument_inlayHint) then
-    vim.keymap.set('n', "<leader>th", function() vim.lsp.inlay_hint(bufnr, nil) end, { desc = "[t]oggle inlay [h]ints" })
+    vim.keymap.set('n', '<leader>th', function()
+      vim.lsp.inlay_hint(bufnr, nil)
+    end, { desc = '[t]oggle inlay [h]ints' })
   end
   -- We create a function that lets us more easily define mappings specific
   -- for LSP related items. It sets the mode, buffer and description for us each time.
@@ -366,9 +377,9 @@ local servers = {
           functionTypeParameters = true,
           parameterNames = true,
           rangeVariableTypes = true,
-        }
-      }
-    }
+        },
+      },
+    },
   },
 
   lua_ls = {
@@ -401,7 +412,7 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
       filetypes = (servers[server_name] or {}).filetypes,
     }
-  end
+  end,
 }
 
 -- [[ Configure nvim-cmp ]]
@@ -456,14 +467,14 @@ if next(vim.fn.argv()) == nil then
   vim.cmd.Ex()
 end
 
-require('lspconfig').gdscript.setup({
+require('lspconfig').gdscript.setup {
 
-  force_setup = true,                    -- because the LSP is global. Read more on lsp-zero docs about this.
+  force_setup = true, -- because the LSP is global. Read more on lsp-zero docs about this.
   single_file_support = false,
   cmd = { 'ncat', '127.0.0.1', '6005' }, -- the important trick for Windows!
   root_dir = require('lspconfig.util').root_pattern('project.godot', '.git'),
-  filetypes = { 'gd', 'gdscript', 'gdscript3' }
-})
+  filetypes = { 'gd', 'gdscript', 'gdscript3' },
+}
 
 -- vim.lsp.configure('gdscript', {
 --   force_setup = true,                    -- because the LSP is global. Read more on lsp-zero docs about this.

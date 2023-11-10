@@ -20,21 +20,21 @@ vim.keymap.set('v', '<Tab>', '>gv')
 -- vim.keymap.set('n', 'K', 'gt')
 
 -- [[Bufferline Remaps]]
-local bufferline = require('bufferline')
+local bufferline = require 'bufferline'
 -- Switch buffers in the Bufferline
 vim.keymap.set('n', 'J', function()
-  vim.cmd('BufferLineCyclePrev')
+  vim.cmd 'BufferLineCyclePrev'
 end)
 vim.keymap.set('n', 'K', function()
-  vim.cmd('BufferLineCycleNext')
+  vim.cmd 'BufferLineCycleNext'
 end)
 
 -- Move buffers in the bufferline
 vim.keymap.set('n', 'H', function()
-  vim.cmd('BufferLineMovePrev')
+  vim.cmd 'BufferLineMovePrev'
 end)
 vim.keymap.set('n', 'L', function()
-  vim.cmd('BufferLineMoveNext')
+  vim.cmd 'BufferLineMoveNext'
 end)
 
 -- Move to certain buffer in the bufferline
@@ -91,37 +91,36 @@ vim.keymap.set('n', '<leader>bd', ':bd<cr>')
 -- Open new tab with leader t
 -- In netrw
 vim.keymap.set('n', '<leader>tn', function()
-  vim.cmd(':tab split')
-  vim.cmd.edit('.')
+  vim.cmd ':tab split'
+  vim.cmd.edit '.'
 end, { desc = 'New [T]ab in [N]etrw' })
 
 -- In find files
 vim.keymap.set('n', '<leader>tf', function()
-  vim.cmd(':tab split')
-  vim.cmd.edit('.')
+  vim.cmd ':tab split'
+  vim.cmd.edit '.'
   require('telescope.builtin').find_files()
 end, { desc = 'New [T]ab in Telescope [F]ind files' })
 
 --vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Move line up and down and indent acordingly, with alt + jk or arrows
-vim.keymap.set("v", "<M-Down>", ":m '>+1<cr>gv=gv")
-vim.keymap.set("v", "<M-Up>", ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<M-Down>', ":m '>+1<cr>gv=gv")
+vim.keymap.set('v', '<M-Up>', ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("v", "<M-j>", ":m '>+1<cr>gv=gv")
-vim.keymap.set("v", "<M-k>", ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<M-j>', ":m '>+1<cr>gv=gv")
+vim.keymap.set('v', '<M-k>', ":m '<-2<CR>gv=gv")
 
 -- Wen jumping to next with n/N, keep cursor in the center
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
 
-vim.keymap.set("x", "p", [["_dP]])
+vim.keymap.set('x', 'p', [["_dP]])
 
-vim.keymap.set('v', 'd', '\"_d')
+vim.keymap.set('v', 'd', '"_d')
 
 -- Live find and replace with the current word
-vim.keymap.set("n", "<leader>fr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = '[F]ind and [R]eplace' })
+vim.keymap.set('n', '<leader>fr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = '[F]ind and [R]eplace' })
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -133,44 +132,39 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>fd', vim.diagnostic.open_float, { desc = 'Open [F]loating [D]iagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
-
 -- [[ Telescope ]]
-local telescope_pickers = require('telescopePickers')
--- vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
--- vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = 'Telescope [F]ind [F]iles' })
--- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
--- vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
--- vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
--- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+local telescope_pickers = require 'telescopePickers'
+
+vim.keymap.set('n', '<leader>fa', ':Telescope aerial<CR>', { desc = '[F]ind in [A]erial' })
 vim.keymap.set('n', '<leader>gf', function()
-  telescope_pickers.prettyFilesPicker({ picker = 'git_files' })
+  telescope_pickers.prettyFilesPicker { picker = 'git_files' }
 end, { desc = 'Search [G]it [F]iles' })
 
 vim.keymap.set('n', '<leader>ff', function()
-  telescope_pickers.prettyFilesPicker({ picker = 'find_files' })
+  telescope_pickers.prettyFilesPicker { picker = 'find_files' }
 end, { desc = 'Telescope [F]ind [F]iles' })
 
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 
 vim.keymap.set('n', '<leader>sw', function()
-  telescope_pickers.prettyGrepPicker({ picker = 'grep_string' })
+  telescope_pickers.prettyGrepPicker { picker = 'grep_string' }
 end, { desc = '[S]earch current [W]ord' })
 
 vim.keymap.set('n', '<leader>sg', function()
-  telescope_pickers.prettyGrepPicker({ picker = 'live_grep' })
+  telescope_pickers.prettyGrepPicker { picker = 'live_grep' }
 end, { desc = '[S]earch by [G]rep' })
 
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- Open current working directory with E
-vim.keymap.set("n", "<leader>E", function()
-  vim.cmd.Ex('.')
+vim.keymap.set('n', '<leader>E', function()
+  vim.cmd.Ex '.'
 end, { desc = 'Open working directory on netrw' })
 
 -- Change current working directory to the directory of the current file, or the
 -- one open with netrw file explorer
-vim.keymap.set("n", "<leader>cd", function()
-  vim.cmd.cd('%:h')
+vim.keymap.set('n', '<leader>cd', function()
+  vim.cmd.cd '%:h'
 end)
 
 -- Terminal mode remaps
@@ -198,26 +192,26 @@ vim.api.nvim_create_autocmd('filetype', {
 
     -- Go up a directory
     bind('e', '-')
-  end
+  end,
 })
 
 -- To indent automatically on empty line when entering insert
-vim.keymap.set("n", "i", function()
-  if #vim.fn.getline(".") == 0 then
+vim.keymap.set('n', 'i', function()
+  if #vim.fn.getline '.' == 0 then
     return [["_cc]]
   else
-    return "i"
+    return 'i'
   end
-end, { expr = true, desc = "properly indent on empty line when insert" })
+end, { expr = true, desc = 'properly indent on empty line when insert' })
 
 -- To use ctrl + space to open completion menu
-local cmp = require('cmp')
+local cmp = require 'cmp'
 vim.keymap.set('i', '<C-space>', function()
   if cmp.visible() then
-    require("notify")("visible")
+    require 'notify' 'visible'
     cmp.abort()
   else
-    require("notify")("not visible")
+    require 'notify' 'not visible'
     cmp.complete()
   end
 end, { desc = '[S]earch [D]iagnostics' })
@@ -241,3 +235,4 @@ vim.keymap.set('i', '<M-j>', '<down>')
 vim.keymap.set('i', '<M-k>', '<up>')
 vim.keymap.set('i', '<M-l>', '<right>')
 
+vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle<CR>', { desc = 'Open [A]erial window' })
