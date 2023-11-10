@@ -1,5 +1,4 @@
 local aerial = require 'aerial'
-local aerial_actions = require 'aerial.actions'
 
 aerial.setup {
   on_attach = function(bufnr)
