@@ -1,9 +1,8 @@
-local vscode = require('vscode')
-vscode.setup({
-  style = 'dark',
+local vscode = require 'vscode'
+vscode.setup {
+    style = 'dark',
 
-  -- Enable italic comment
-  italic_comments = false,
-})
+    -- Enable italic comment
+    italic_comments = false,
+}
 vscode.load()
-

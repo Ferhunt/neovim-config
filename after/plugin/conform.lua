@@ -1,18 +1,28 @@
-local conform = require('conform')
+local conform = require 'conform'
 
-conform.setup({
-  formatters_by_ft = {
-    -- Conform will run multiple formatters sequentially
-    python = { "isort", "black" },
-    lua = { "stylua" },
-    html = { "djlint" },
-    go = { "gofmt" },
-    -- gdscript = {"gdformat"},
+conform.setup {
+    formatters_by_ft = {
+        -- Conform will run multiple formatters sequentially
+        python = { 'isort', 'black' },
+        lua = { 'stylua' },
+        html = { 'djlint' },
+        go = { 'gofmt' },
+        -- gdscript = {"gdformat"},
+    },
 
-  },
-  format_on_save = {
-    -- These options will be passed to conform.format()
-    timeout_ms = 500,
-    lsp_fallback = true,
-  },
-})
+    formatters = {
+        stylua = {
+            command = 'stylua',
+            prepend_args = {
+                '--indent-width',
+                '4',
+            },
+        },
+    },
+
+    format_on_save = {
+        -- These options will be passed to conform.format()
+        timeout_ms = 500,
+        lsp_fallback = true,
+    },
+}

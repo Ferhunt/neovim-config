@@ -1,8 +1,7 @@
-require("inlay-hints").setup({
-  only_current_line = true,
+require('inlay-hints').setup {
+    only_current_line = true,
 
-  eol = {
-    right_align = true,
-  }
-})
-
+    eol = {
+        right_align = true,
+    },
+}

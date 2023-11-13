@@ -1,19 +1,19 @@
 local highlight = {
-  'CursorColumn',
-  'Whitespace',
+    'CursorColumn',
+    'Whitespace',
 }
 local ibl = require 'ibl'
 ibl.setup {
 
-  indent = {
-    -- highlight = highlight,
-    char = '┊',
-  },
+    indent = {
+        -- highlight = highlight,
+        char = '┊',
+    },
 
-  -- whitespace = {
-  --   highlight = highlight,
-  --   remove_blankline_trail = false,
-  -- },
+    -- whitespace = {
+    --   highlight = highlight,
+    --   remove_blankline_trail = false,
+    -- },
 
-  scope = { enabled = true },
+    scope = { enabled = true },
 }

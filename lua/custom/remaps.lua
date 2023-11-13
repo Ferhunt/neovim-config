@@ -23,55 +23,55 @@ vim.keymap.set('v', '<Tab>', '>gv')
 local bufferline = require 'bufferline'
 -- Switch buffers in the Bufferline
 vim.keymap.set('n', 'J', function()
-  vim.cmd 'BufferLineCyclePrev'
+    vim.cmd 'BufferLineCyclePrev'
 end)
 vim.keymap.set('n', 'K', function()
-  vim.cmd 'BufferLineCycleNext'
+    vim.cmd 'BufferLineCycleNext'
 end)
 
 -- Move buffers in the bufferline
 vim.keymap.set('n', 'H', function()
-  vim.cmd 'BufferLineMovePrev'
+    vim.cmd 'BufferLineMovePrev'
 end)
 vim.keymap.set('n', 'L', function()
-  vim.cmd 'BufferLineMoveNext'
+    vim.cmd 'BufferLineMoveNext'
 end)
 
 -- Move to certain buffer in the bufferline
 vim.keymap.set('n', '<leader>1', function()
-  bufferline.go_to(1, true)
+    bufferline.go_to(1, true)
 end, { desc = 'Go to buffer 1 in BufferLine' })
 
 vim.keymap.set('n', '<leader>2', function()
-  bufferline.go_to(2, true)
+    bufferline.go_to(2, true)
 end, { desc = 'Go to buffer 2 in BufferLine' })
 
 vim.keymap.set('n', '<leader>3', function()
-  bufferline.go_to(3, true)
+    bufferline.go_to(3, true)
 end, { desc = 'Go to buffer 3 in BufferLine' })
 
 vim.keymap.set('n', '<leader>4', function()
-  bufferline.go_to(4, true)
+    bufferline.go_to(4, true)
 end, { desc = 'Go to buffer 4 in BufferLine' })
 
 vim.keymap.set('n', '<leader>5', function()
-  bufferline.go_to(5, true)
+    bufferline.go_to(5, true)
 end, { desc = 'Go to buffer 5 in BufferLine' })
 
 vim.keymap.set('n', '<leader>6', function()
-  bufferline.go_to(6, true)
+    bufferline.go_to(6, true)
 end, { desc = 'Go to buffer 6 in BufferLine' })
 
 vim.keymap.set('n', '<leader>7', function()
-  bufferline.go_to(7, true)
+    bufferline.go_to(7, true)
 end, { desc = 'Go to buffer 7 in BufferLine' })
 
 vim.keymap.set('n', '<leader>8', function()
-  bufferline.go_to(8, true)
+    bufferline.go_to(8, true)
 end, { desc = 'Go to buffer 8 in BufferLine' })
 
 vim.keymap.set('n', '<leader>9', function()
-  bufferline.go_to(9, true)
+    bufferline.go_to(9, true)
 end, { desc = 'Go to buffer 9 in BufferLine' })
 
 -- vim.keymap.set('n', 'H', function()
@@ -91,15 +91,15 @@ vim.keymap.set('n', '<leader>bd', ':bd<cr>')
 -- Open new tab with leader t
 -- In netrw
 vim.keymap.set('n', '<leader>tn', function()
-  vim.cmd ':tab split'
-  vim.cmd.edit '.'
+    vim.cmd ':tab split'
+    vim.cmd.edit '.'
 end, { desc = 'New [T]ab in [N]etrw' })
 
 -- In find files
 vim.keymap.set('n', '<leader>tf', function()
-  vim.cmd ':tab split'
-  vim.cmd.edit '.'
-  require('telescope.builtin').find_files()
+    vim.cmd ':tab split'
+    vim.cmd.edit '.'
+    require('telescope.builtin').find_files()
 end, { desc = 'New [T]ab in Telescope [F]ind files' })
 
 --vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
@@ -137,34 +137,34 @@ local telescope_pickers = require 'telescopePickers'
 
 vim.keymap.set('n', '<leader>fa', ':Telescope aerial<CR>', { desc = '[F]ind in [A]erial' })
 vim.keymap.set('n', '<leader>gf', function()
-  telescope_pickers.prettyFilesPicker { picker = 'git_files' }
+    telescope_pickers.prettyFilesPicker { picker = 'git_files' }
 end, { desc = 'Search [G]it [F]iles' })
 
 vim.keymap.set('n', '<leader>ff', function()
-  telescope_pickers.prettyFilesPicker { picker = 'find_files' }
+    telescope_pickers.prettyFilesPicker { picker = 'find_files' }
 end, { desc = 'Telescope [F]ind [F]iles' })
 
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 
 vim.keymap.set('n', '<leader>sw', function()
-  telescope_pickers.prettyGrepPicker { picker = 'grep_string' }
+    telescope_pickers.prettyGrepPicker { picker = 'grep_string' }
 end, { desc = '[S]earch current [W]ord' })
 
 vim.keymap.set('n', '<leader>sg', function()
-  telescope_pickers.prettyGrepPicker { picker = 'live_grep' }
+    telescope_pickers.prettyGrepPicker { picker = 'live_grep' }
 end, { desc = '[S]earch by [G]rep' })
 
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 -- Open current working directory with E
 vim.keymap.set('n', '<leader>E', function()
-  vim.cmd.Ex '.'
+    vim.cmd.Ex '.'
 end, { desc = 'Open working directory on netrw' })
 
 -- Change current working directory to the directory of the current file, or the
 -- one open with netrw file explorer
 vim.keymap.set('n', '<leader>cd', function()
-  vim.cmd.cd '%:h'
+    vim.cmd.cd '%:h'
 end)
 
 -- Terminal mode remaps
@@ -174,46 +174,46 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 
 -- Remaps for netrw
 vim.api.nvim_create_autocmd('filetype', {
-  pattern = 'netrw',
-  desc = 'Better mappings for netrw',
-  callback = function()
-    local bind = function(lhs, rhs)
-      vim.keymap.set('n', lhs, rhs, { remap = true, buffer = true })
-    end
+    pattern = 'netrw',
+    desc = 'Better mappings for netrw',
+    callback = function()
+        local bind = function(lhs, rhs)
+            vim.keymap.set('n', lhs, rhs, { remap = true, buffer = true })
+        end
 
-    -- edit new file
-    bind('n', '%')
+        -- edit new file
+        bind('n', '%')
 
-    -- rename file
-    bind('r', 'R')
+        -- rename file
+        bind('r', 'R')
 
-    -- Open file
-    bind('f', '<cr>')
+        -- Open file
+        bind('f', '<cr>')
 
-    -- Go up a directory
-    bind('e', '-')
-  end,
+        -- Go up a directory
+        bind('e', '-')
+    end,
 })
 
 -- To indent automatically on empty line when entering insert
 vim.keymap.set('n', 'i', function()
-  if #vim.fn.getline '.' == 0 then
-    return [["_cc]]
-  else
-    return 'i'
-  end
+    if #vim.fn.getline '.' == 0 then
+        return [["_cc]]
+    else
+        return 'i'
+    end
 end, { expr = true, desc = 'properly indent on empty line when insert' })
 
 -- To use ctrl + space to open completion menu
 local cmp = require 'cmp'
 vim.keymap.set('i', '<C-space>', function()
-  if cmp.visible() then
-    require 'notify' 'visible'
-    cmp.abort()
-  else
-    require 'notify' 'not visible'
-    cmp.complete()
-  end
+    if cmp.visible() then
+        require 'notify' 'visible'
+        cmp.abort()
+    else
+        require 'notify' 'not visible'
+        cmp.complete()
+    end
 end, { desc = '[S]earch [D]iagnostics' })
 
 -- Change window with <leader>w + hjkl
