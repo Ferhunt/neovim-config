@@ -222,6 +222,10 @@ require('lazy').setup { -- NOTE: First, some plugins that don't require any conf
         },
         build = ':TSUpdate',
     },
+
+    {
+        'efueyo/td.nvim',
+    },
 }
 
 require 'custom.remaps'
@@ -361,6 +365,10 @@ local servers = {
     gopls = {
         settings = {
             gopls = {
+                usePlaceholders = true,
+                analyses = {
+                    unusedparams = true,
+                },
                 hints = {
                     assignVariables = true,
                     compositeLiteralFields = true,
@@ -476,6 +484,3 @@ require('lspconfig').gdscript.setup {
 --   root_dir = require('lspconfig.util').root_pattern('project.godot', '.git'),
 --   filetypes = { 'gd', 'gdscript', 'gdscript3' }
 -- })
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
