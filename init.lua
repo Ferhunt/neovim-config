@@ -232,9 +232,7 @@ require('lazy').setup { -- NOTE: First, some plugins that don't require any conf
         build = ':TSUpdate',
     },
 
-    {
-        'efueyo/td.nvim',
-    },
+    'mfussenegger/nvim-dap',
 }
 
 require 'custom.remaps'
