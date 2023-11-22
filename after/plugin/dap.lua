@@ -8,14 +8,10 @@ dap.adapters.godot = {
 
 dap.configurations.gdscript = {
     {
-        name = 'Godot',
         type = 'godot',
         request = 'launch',
+        name = 'Launch scene',
         project = '${workspaceFolder}',
-        port = 6007,
-        debugServer = 6006,
-        address = '127.0.0.1',
-        launch_game_instance = true,
         launch_scene = false,
     },
 }
