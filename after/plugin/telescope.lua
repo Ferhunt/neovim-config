@@ -5,7 +5,7 @@ local telescope_builtin = require 'telescope.builtin'
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 
-telescope.load_extension 'aerial'
+-- telescope.load_extension 'aerial'
 
 telescope.setup {
     pickers = {

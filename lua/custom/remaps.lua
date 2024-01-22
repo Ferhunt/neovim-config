@@ -62,18 +62,6 @@ vim.keymap.set('n', '<leader>6', function()
     bufferline.go_to(6, true)
 end, { desc = 'Go to buffer 6 in BufferLine' })
 
-vim.keymap.set('n', '<leader>7', function()
-    bufferline.go_to(7, true)
-end, { desc = 'Go to buffer 7 in BufferLine' })
-
-vim.keymap.set('n', '<leader>8', function()
-    bufferline.go_to(8, true)
-end, { desc = 'Go to buffer 8 in BufferLine' })
-
-vim.keymap.set('n', '<leader>9', function()
-    bufferline.go_to(9, true)
-end, { desc = 'Go to buffer 9 in BufferLine' })
-
 -- vim.keymap.set('n', 'H', function()
 --   vim.cmd('tabm -1')
 -- end)
@@ -223,8 +211,8 @@ vim.keymap.set('n', '<leader>wk', '<C-w>k')
 vim.keymap.set('n', '<leader>wl', '<C-w>l')
 
 -- Scroll keymaps
-vim.keymap.set('n', '<C-j>', '<C-d>')
-vim.keymap.set('n', '<C-k>', '<C-u>')
+vim.keymap.set('n', '<C-S-J>', '<C-d>')
+vim.keymap.set('n', '<C-S-K>', '<C-u>')
 
 vim.keymap.set('n', '<M-j>', '<C-e>')
 vim.keymap.set('n', '<M-k>', '<C-y>')

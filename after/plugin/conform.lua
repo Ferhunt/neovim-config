@@ -7,7 +7,6 @@ conform.setup {
         lua = { 'stylua' },
         html = { 'djlint' },
         go = { 'gofmt' },
-        -- gdscript = {"gdformat"},
     },
 
     formatters = {

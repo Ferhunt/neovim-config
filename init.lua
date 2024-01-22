@@ -105,12 +105,15 @@ require('lazy').setup { -- NOTE: First, some plugins that don't require any conf
 
     -- Symbol tree
     {
-        'stevearc/aerial.nvim',
-        opts = {},
-        -- Optional dependencies
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter',
-            'nvim-tree/nvim-web-devicons',
+        'hedyhli/outline.nvim',
+        cmd = { 'Outline', 'OutlineOpen' },
+        keys = { -- Example mapping to toggle outline
+            { '<leader>o', '<cmd>Outline<CR>', desc = 'Toggle outline' },
+        },
+        opts = {
+            outline_window = {
+                auto_close = true,
+            },
         },
     },
 
@@ -232,7 +235,15 @@ require('lazy').setup { -- NOTE: First, some plugins that don't require any conf
         build = ':TSUpdate',
     },
 
+    'vrischmann/tree-sitter-templ',
+
     'mfussenegger/nvim-dap',
+    'mfussenegger/nvim-lint',
+    {
+        'ThePrimeagen/harpoon',
+        branch = 'harpoon2',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+    },
 }
 
 require 'custom.remaps'
@@ -243,12 +254,15 @@ require 'custom.settings'
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'gdscript' },
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'gdscript', 'templ' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
 
-    highlight = { enable = true },
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
     indent = { enable = true },
     incremental_selection = {
         enable = true,
@@ -369,6 +383,8 @@ local servers = {
     -- rust_analyzer = {},
     -- tsserver = {},
     -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+    -- tailwindcss = {},
+    templ = {},
     gopls = {
         settings = {
             gopls = {
@@ -474,6 +490,13 @@ cmp.setup {
 if next(vim.fn.argv()) == nil then
     vim.cmd.Ex()
 end
+
+-- additional filetypes
+vim.filetype.add {
+    extension = {
+        templ = 'templ',
+    },
+}
 
 require('lspconfig').gdscript.setup {
 
