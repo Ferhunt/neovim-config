@@ -224,3 +224,7 @@ vim.keymap.set('i', '<M-k>', '<up>')
 vim.keymap.set('i', '<M-l>', '<right>')
 
 vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle<CR>', { desc = 'Open [A]erial window' })
+
+-- Git push and pull commands.
+vim.api.nvim_create_user_command('Pull', ':Git pull --rebase', {})
+vim.api.nvim_create_user_command('Push', ':Git push', {})
